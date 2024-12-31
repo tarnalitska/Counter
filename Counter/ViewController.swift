@@ -9,23 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  @IBOutlet weak var minusButton: UIButton!
-  @IBOutlet weak var plusButton: UIButton!
-  @IBOutlet weak var restartButton: UIButton!
+  @IBOutlet private weak var minusButton: UIButton!
+  @IBOutlet private weak var plusButton: UIButton!
+  @IBOutlet private weak var restartButton: UIButton!
   
-  @IBOutlet weak var textView: UITextView!
-  @IBOutlet weak var counterLabel: UILabel!
-  var counter: Int = 0
+  @IBOutlet private weak var textView: UITextView!
+  @IBOutlet private weak var counterLabel: UILabel!
+  private var counter: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
     updateCounterLabel()
     textView.isEditable = false
   }
 
-  // Buttons Actions (plus, minus, restart)
-  @IBAction func countMinus(_ sender: Any) {
+  @IBAction private func countMinus(_ sender: Any) {
     let formattedDate = defineCurrentTime()
     if counter > 0 {
       counter -= 1
@@ -36,26 +34,24 @@ class ViewController: UIViewController {
     }
   }
   
-  @IBAction func countPlus(_ sender: Any) {
+  @IBAction private func countPlus(_ sender: Any) {
     let formattedDate = defineCurrentTime()
     counter += 1
     updateCounterLabel()
     textView.text += "\n\(formattedDate) - значение изменено на +1"
   }
   
-  @IBAction func countRestart(_ sender: Any) {
+  @IBAction private func countRestart(_ sender: Any) {
     let formattedDate = defineCurrentTime()
     counter = 0
     updateCounterLabel()
     textView.text += "\n\(formattedDate) - значение сброшено"
   }
   
-  // Update Counter Label
   private func updateCounterLabel() {
     counterLabel.text = "Значение счётчика - \(counter)"
   }
   
-  // Define current time
   private func defineCurrentTime() -> String {
     let currentDate = Date()
     let formatter = DateFormatter()
